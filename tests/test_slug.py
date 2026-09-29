@@ -14,6 +14,12 @@ class NormalizeSlugTests(unittest.TestCase):
     def test_trims_outer_whitespace(self) -> None:
         self.assertEqual(normalize_slug("  release notes  "), "release-notes")
 
+    def test_collapses_mixed_whitespace(self) -> None:
+        self.assertEqual(
+            normalize_slug("Release \t  Candidate\nNotes"),
+            "release-candidate-notes",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
